@@ -34,5 +34,26 @@ accordionBtns.forEach((accordion) => {
         }
     };
 
+
 });
 
+accordionBtns.forEach((button, index) => {
+  button.addEventListener("keydown", function (event) {
+    let nextIndex;
+
+    if (event.key === "ArrowDown") {
+      nextIndex = (index + 1) % accordionBtns.length;
+    } else if (event.key === "ArrowUp") {
+      nextIndex = (index - 1 + accordionBtns.length) % accordionBtns.length;
+    } else if (event.key === "Home") {
+      nextIndex = 0;
+    } else if (event.key === "End") {
+      nextIndex = accordionBtns.length - 1;
+    } else {
+      return;
+    }
+
+    event.preventDefault();
+    accordionBtns[nextIndex].focus();
+  });
+});
